@@ -3,5 +3,10 @@ main {
 }
 
 a {
-  text-decoration: none;
+  text-decoration: none !important;
+  font-weight: bold;
+}
+
+.rating span {
+  margin: 0.1rem;
 }
