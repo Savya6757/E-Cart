@@ -31,3 +31,31 @@ export const removeFromCart = (id) => {
     localStorage.setItem("cartItems", JSON.stringify(getState().cartItems.items));
   };
 };
+
+export const saveShippingAddress = (data) => {
+  return async (dispatch) => {
+    dispatch(
+      cartItemsAction.saveShippingAddress({
+        data: data,
+      })
+    );
+    localStorage.setItem("shippingAddress", JSON.stringify(data));
+  };
+};
+
+export const savePaymentMethod = (data) => {
+  return async (dispatch) => {
+    dispatch(
+      cartItemsAction.savePaymentMethod({
+        data: data,
+      })
+    );
+    localStorage.setItem("paymentMethod", JSON.stringify(data));
+  };
+};
+
+export const calculatePrices = () => {
+  return async (dispatch) => {
+    dispatch(cartItemsAction.calculateTotal({}));
+  };
+};

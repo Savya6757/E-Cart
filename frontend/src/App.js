@@ -1,13 +1,16 @@
+import { Route, Routes } from "react-router-dom";
+import { Container } from "react-bootstrap";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import { Container } from "react-bootstrap";
 import HomeScreen from "./pages/HomeScreen";
-import { Route, Routes } from "react-router-dom";
 import ProductsDetails from "./pages/ProductsDetails";
 import CartScreen from "./pages/CartScreen";
 import LoginScreen from "./pages/LoginScreen";
 import RegisterScreen from "./pages/RegisterScreen";
 import ProfileScreen from "./pages/ProfileScreen";
+import ShippingScreen from "./pages/ShippingScreen";
+import PaymentScreen from "./pages/PaymentScreen";
+import PlaceOrderScreen from "./pages/PlaceOrderScreen";
 
 function App() {
   return (
@@ -21,6 +24,9 @@ function App() {
             <Route path="/login" element={<LoginScreen />} />
             <Route path="/register" element={<RegisterScreen />} />
             <Route path="/profile" element={<ProfileScreen />} />
+            <Route path="/shipping" element={<ShippingScreen />} />
+            <Route path="/payment" element={<PaymentScreen />} />
+            <Route path="/placeorder" element={<PlaceOrderScreen />} />
             <Route path="/" element={<HomeScreen />} />
           </Routes>
         </Container>
