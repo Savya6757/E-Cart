@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import productList from "./slices/product-slice";
 import cartItems from "./slices/cart-slice";
 import userAuth from "./slices/user-slice";
+import userDetails from "./slices/user-details";
 
 const cartItemsFromStorage = localStorage.getItem("cartItems")
   ? JSON.parse(localStorage.getItem("cartItems"))
@@ -16,6 +17,7 @@ const store = configureStore({
     productList,
     cartItems,
     userAuth,
+    userDetails,
   },
 
   preloadedState: {
