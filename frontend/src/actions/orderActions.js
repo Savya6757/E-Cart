@@ -63,3 +63,52 @@ export const getOrderDetails = (id) => {
     }
   };
 };
+
+export const orderCreateReset = () => {
+  return (dispatch) => {
+    dispatch(orderCreateAction.orderReset({}));
+  };
+};
+
+export const orderDetailsReset = () => {
+  return (dispatch) => {
+    dispatch(orderDetailsAction.orderReset({}));
+  };
+};
+export const orderPayReset = () => {
+  return (dispatch) => {
+    dispatch(orderPayAction.orderReset({}));
+  };
+};
+
+export const payOrder = (orderId) => {
+  return async (dispatch, getState) => {
+    try {
+      const {
+        userAuth: { userInfo },
+      } = getState();
+
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      };
+      const { data } = await axios.put(`/api/orders/${orderId}/pay`, {}, config);
+      dispatch(
+        orderPayAction.orderPaySuccess({
+          order: data,
+        })
+      );
+    } catch (error) {
+      dispatch(
+        orderPayAction.orderPayFail({
+          error:
+            error.response && error.response.data.message
+              ? error.response.data.message
+              : error.message,
+        })
+      );
+    }
+  };
+};

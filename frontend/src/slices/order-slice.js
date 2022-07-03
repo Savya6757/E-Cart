@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const orderCreate = createSlice({
   name: "orderCreate",
-  initialState: { order: null, success: null, loading: true, error: false },
+  initialState: { order: null, success: null, loading: true, error: null },
   reducers: {
     orderCreateSuccess(state, action) {
       state.order = action.payload.order;
@@ -13,12 +13,15 @@ const orderCreate = createSlice({
       state.loading = false;
       state.error = action.payload.error;
     },
+    orderReset() {
+      return {};
+    },
   },
 });
 
 const orderDetails = createSlice({
   name: "orderDetails",
-  initialState: { orderItems: [], shippingAddress: {}, loading: true, error: false },
+  initialState: { orderItems: [], shippingAddress: {}, loading: true, error: null },
   reducers: {
     orderDetailsSuccess(state, action) {
       state.order = action.payload.order;
@@ -28,12 +31,15 @@ const orderDetails = createSlice({
       state.loading = false;
       state.error = action.payload.error;
     },
+    orderReset() {
+      return {};
+    },
   },
 });
 
 const orderPay = createSlice({
   name: "orderPay",
-  initialState: {loading: true, error: false },
+  initialState: { loading: true, error: null, success: false },
   reducers: {
     orderPaySuccess(state, action) {
       state.success = true;
@@ -42,6 +48,9 @@ const orderPay = createSlice({
     orderPayFail(state, action) {
       state.loading = false;
       state.error = action.payload.error;
+    },
+    orderReset() {
+      return {};
     },
   },
 });

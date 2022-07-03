@@ -7,6 +7,7 @@ import CheckoutSteps from "../components/CheckoutSteps";
 import { calculatePrices } from "../actions/cartActions";
 import { createdOrder } from "../actions/orderActions";
 
+
 const PlaceOrderScreen = () => {
   const cart = useSelector((state) => state.cartItems);
   const { order, success, error } = useSelector((state) => state.orderCreate);
@@ -23,8 +24,9 @@ const PlaceOrderScreen = () => {
       navigate(`/order/${order._id}`);
     }
     //eslint-disable-next-line
-  }, [navigate, success]);
+  }, [navigate, success, order]);
   const placeOrderHandler = () => {
+    
     dispatch(
       createdOrder({
         orderItems: cart.items,

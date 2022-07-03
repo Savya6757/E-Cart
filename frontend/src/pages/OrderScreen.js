@@ -4,7 +4,7 @@ import { Button, Row, Col, ListGroup, Image, Card } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/ui/Message";
 import Loader from "../components/ui/Loader";
-import { calculatePricesOrder, getOrderDetails } from "../actions/orderActions";
+import { getOrderDetails, orderPayReset, payOrder } from "../actions/orderActions";
 import { useParams } from "react-router-dom";
 
 const OrderScreen = () => {
@@ -12,15 +12,23 @@ const OrderScreen = () => {
   const orderId = params.id;
   const dispatch = useDispatch();
   const { order, loading, error } = useSelector((state) => state.orderDetails);
+  const {
+    order: orderPay,
+    loading: loadingPay,
+    error: errorPay,
+    success,
+  } = useSelector((state) => state.orderPay);
   useEffect(() => {
-    if (!order || order._id !== orderId) {
+    if (!order || success) {
+      dispatch(orderPayReset());
       dispatch(getOrderDetails(orderId));
     }
-  }, [order, orderId]);
-  useEffect(() => {
-    dispatch(getOrderDetails(orderId));
-  }, [dispatch, orderId]);
+    console.log("hi");
+  }, [order, orderId, dispatch, success]);
 
+  const onPayHandler = () => {
+    dispatch(payOrder(orderId));
+  };
   return loading ? (
     <Loader />
   ) : error ? (
@@ -121,6 +129,7 @@ const OrderScreen = () => {
                   <Col>${order.totalPrice}</Col>
                 </Row>
               </ListGroup.Item>
+              <Button onClick={onPayHandler}>Pay Now</Button>
             </ListGroup>
           </Card>
         </Col>

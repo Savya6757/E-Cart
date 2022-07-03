@@ -12,9 +12,7 @@ const PaymentScreen = () => {
   if (!shippingAddress) {
     navigate("/shipping");
   }
-
   const [paymentMethod, setPaymentMethod] = useState("PayPal");
-
   const dispatch = useDispatch();
 
   const submitHandler = (e) => {
