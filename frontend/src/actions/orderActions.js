@@ -33,7 +33,7 @@ export const createdOrder = (order) => {
   };
 };
 
-export const payOrder = (orderId, paymentResult) => {
+export const getOrderDetails = (id) => {
   return async (dispatch, getState) => {
     try {
       const {
@@ -42,19 +42,18 @@ export const payOrder = (orderId, paymentResult) => {
 
       const config = {
         headers: {
-          "Content-Type": "application/json",
           Authorization: `Bearer ${userInfo.token}`,
         },
       };
-      const { data } = await axios.put(`/api/orders/${orderId}/pay`, paymentResult, config);
+      const { data } = await axios.get(`/api/orders/${id}`, config);
       dispatch(
-        orderPayAction.orderPaySuccess({
+        orderDetailsAction.orderDetailsSuccess({
           order: data,
         })
       );
     } catch (error) {
       dispatch(
-        orderPayAction.orderPayFail({
+        orderDetailsAction.orderDetailsFail({
           error:
             error.response && error.response.data.message
               ? error.response.data.message
