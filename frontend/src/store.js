@@ -1,5 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { allProductListReducer, productListReducer } from "./slices/product-slice";
+import {
+  allProductListReducer,
+  productListReducer,
+  productReviewReducer,
+} from "./slices/product-slice";
 import cartItems from "./slices/cart-slice";
 import userAuth from "./slices/user-slice";
 import userDetails from "./slices/user-details";
@@ -27,8 +31,9 @@ const paymentMethodFromStorage = localStorage.getItem("paymentMethod")
 
 const store = configureStore({
   reducer: {
-    allProductList : allProductListReducer,
-    productList : productListReducer,
+    allProductList: allProductListReducer,
+    productList: productListReducer,
+    productReviewCreate: productReviewReducer,
     cartItems,
     userAuth,
     userDetails,

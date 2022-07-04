@@ -1,4 +1,8 @@
-import { allProductListAction, productListAction } from "../slices/product-slice";
+import {
+  allProductListAction,
+  productListAction,
+  productReviewAction,
+} from "../slices/product-slice";
 import axios from "axios";
 
 export const getProductList = () => {
@@ -44,5 +48,39 @@ export const getSingleProduct = (id) => {
         })
       );
     }
+  };
+};
+
+export const createProductReview = (prodId, review) => {
+  return async (dispatch, getState) => {
+    try {
+      const {
+        userAuth: { userInfo },
+      } = getState();
+
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      };
+      await axios.post(`/api/products/${prodId}/reviews`, review, config);
+      dispatch(productReviewAction.productCreateReviewSuccess({}));
+    } catch (error) {
+      dispatch(
+        productReviewAction.productCreateReviewFail({
+          error:
+            error.response && error.response.data.message
+              ? error.response.data.message
+              : error.message,
+        })
+      );
+    }
+  };
+};
+
+export const createReviewReset = () => {
+  return (dispatch) => {
+    dispatch(productReviewAction.productCreateReviewReset({}));
   };
 };

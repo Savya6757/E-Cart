@@ -30,8 +30,28 @@ const productList = createSlice({
   },
 });
 
+const productReview = createSlice({
+  name: "productReview",
+  initialState: { success: false, loading: true, error: false },
+  reducers: {
+    productCreateReviewSuccess(state, action) {
+      state.success = true;
+      state.loading = false;
+    },
+    productCreateReviewFail(state, action) {
+      state.loading = false;
+      state.error = action.payload.error;
+    },
+    productCreateReviewReset() {
+      return { success: false, loading: true, error: false };
+    },
+  },
+});
+
 export const allProductListAction = allProductList.actions;
 export const productListAction = productList.actions;
+export const productReviewAction = productReview.actions;
 
 export const allProductListReducer = allProductList.reducer;
 export const productListReducer = productList.reducer;
+export const productReviewReducer = productReview.reducer;
