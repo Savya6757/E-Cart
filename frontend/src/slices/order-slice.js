@@ -32,7 +32,7 @@ const orderDetails = createSlice({
       state.error = action.payload.error;
     },
     orderReset() {
-      return {};
+      return { loading: true };
     },
   },
 });
@@ -55,10 +55,30 @@ const orderPay = createSlice({
   },
 });
 
+const orderList = createSlice({
+  name: "orderList",
+  initialState: { orders: null, loading: true, error: null },
+  reducers: {
+    orderListSuccess(state, action) {
+      state.loading = false;
+      state.orders = action.payload.orders;
+    },
+    orderListFail(state, action) {
+      state.loading = false;
+      state.error = action.payload.error;
+    },
+    orderReset() {
+      return { loading: true };
+    },
+  },
+});
+
 export const orderDetailsAction = orderDetails.actions;
 export const orderCreateAction = orderCreate.actions;
 export const orderPayAction = orderPay.actions;
+export const orderListAction = orderList.actions;
 
 export const orderDetailsReducer = orderDetails.reducer;
 export const orderCreateReducer = orderCreate.reducer;
 export const orderPayReducer = orderPay.reducer;
+export const orderListReducer = orderList.reducer;

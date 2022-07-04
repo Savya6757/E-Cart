@@ -1,4 +1,9 @@
-import { orderCreateAction, orderDetailsAction, orderPayAction } from "../slices/order-slice";
+import {
+  orderCreateAction,
+  orderDetailsAction,
+  orderListAction,
+  orderPayAction,
+} from "../slices/order-slice";
 import axios from "axios";
 
 export const createdOrder = (order) => {
@@ -81,6 +86,12 @@ export const orderPayReset = () => {
   };
 };
 
+export const orderListReset = () => {
+  return (dispatch) => {
+    dispatch(orderListAction.orderReset({}));
+  };
+};
+
 export const payOrder = (orderId) => {
   return async (dispatch, getState) => {
     try {
@@ -103,6 +114,39 @@ export const payOrder = (orderId) => {
     } catch (error) {
       dispatch(
         orderPayAction.orderPayFail({
+          error:
+            error.response && error.response.data.message
+              ? error.response.data.message
+              : error.message,
+        })
+      );
+    }
+  };
+};
+
+export const listMyOrders = () => {
+  return async (dispatch, getState) => {
+    try {
+      const {
+        userAuth: { userInfo },
+      } = getState();
+
+      const config = {
+        headers: {
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      };
+
+      const { data } = await axios.get(`/api/orders/myorders`, config);
+
+      dispatch(
+        orderListAction.orderListSuccess({
+          orders: data,
+        })
+      );
+    } catch (error) {
+      dispatch(
+        orderListAction.orderListFail({
           error:
             error.response && error.response.data.message
               ? error.response.data.message

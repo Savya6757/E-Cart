@@ -10,14 +10,9 @@ import { useParams } from "react-router-dom";
 const OrderScreen = () => {
   const params = useParams();
   const orderId = params.id;
-  const dispatch = useDispatch();
   const { order, loading, error } = useSelector((state) => state.orderDetails);
-  const {
-    order: orderPay,
-    loading: loadingPay,
-    error: errorPay,
-    success,
-  } = useSelector((state) => state.orderPay);
+  const dispatch = useDispatch();
+  const { success } = useSelector((state) => state.orderPay);
   useEffect(() => {
     if (!order || success) {
       dispatch(getOrderDetails(orderId));

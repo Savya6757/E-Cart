@@ -1,7 +1,12 @@
 import { userAuthAction } from "../slices/user-slice";
 import { userDetailsAction } from "../slices/user-details";
 import axios from "axios";
-import { orderCreateAction, orderDetailsAction, orderPayAction } from "../slices/order-slice";
+import {
+  orderCreateAction,
+  orderDetailsAction,
+  orderListAction,
+  orderPayAction,
+} from "../slices/order-slice";
 
 export const loginUser = (email, password) => {
   return async (dispatch) => {
@@ -35,9 +40,11 @@ export const userLogout = () => {
   return (dispatch) => {
     localStorage.clear("userInfo");
     dispatch(userAuthAction.userLogoutSuccess());
+    dispatch(userDetailsAction.userReset());
     dispatch(orderCreateAction.orderReset());
     dispatch(orderDetailsAction.orderReset());
     dispatch(orderPayAction.orderReset());
+    dispatch(orderListAction.orderReset());
   };
 };
 

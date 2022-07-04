@@ -1,9 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
-import productList from "./slices/product-slice";
+import { allProductListReducer, productListReducer } from "./slices/product-slice";
 import cartItems from "./slices/cart-slice";
 import userAuth from "./slices/user-slice";
 import userDetails from "./slices/user-details";
-import { orderCreateReducer, orderDetailsReducer, orderPayReducer } from "./slices/order-slice";
+import {
+  orderCreateReducer,
+  orderDetailsReducer,
+  orderListReducer,
+  orderPayReducer,
+} from "./slices/order-slice";
 
 const cartItemsFromStorage = localStorage.getItem("cartItems")
   ? JSON.parse(localStorage.getItem("cartItems"))
@@ -22,13 +27,15 @@ const paymentMethodFromStorage = localStorage.getItem("paymentMethod")
 
 const store = configureStore({
   reducer: {
-    productList,
+    allProductList : allProductListReducer,
+    productList : productListReducer,
     cartItems,
     userAuth,
     userDetails,
     orderCreate: orderCreateReducer,
     orderDetails: orderDetailsReducer,
     orderPay: orderPayReducer,
+    orderList: orderListReducer,
   },
 
   preloadedState: {

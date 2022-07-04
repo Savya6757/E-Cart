@@ -7,7 +7,7 @@ import Loader from "../components/ui/Loader";
 import Message from "../components/ui/Message";
 
 const HomeScreen = () => {
-  const { products, loading, error } = useSelector((state) => state.productList);
+  const { products, loading, error } = useSelector((state) => state.allProductList);
 
   const dispatch = useDispatch();
 

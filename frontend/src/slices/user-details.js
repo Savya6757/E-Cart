@@ -12,6 +12,9 @@ const userDetails = createSlice({
       state.loading = false;
       state.error = action.payload.error;
     },
+    userReset() {
+      return { loading: true, user: {}, error: null };
+    },
   },
 });
 

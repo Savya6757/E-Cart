@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const productList = createSlice({
-  name: "productList",
-  initialState: { products: [], product: null, loading: true, error: false },
+const allProductList = createSlice({
+  name: "allProductList",
+  initialState: { products: [], loading: true, error: false },
   reducers: {
     listSuccess(state, action) {
       state.products = action.payload.products;
@@ -12,6 +12,13 @@ const productList = createSlice({
       state.loading = false;
       state.error = action.payload.error;
     },
+  },
+});
+
+const productList = createSlice({
+  name: "productList",
+  initialState: { product: null, loading: true, error: false },
+  reducers: {
     productSuccess(state, action) {
       state.product = action.payload.product;
       state.loading = false;
@@ -23,6 +30,8 @@ const productList = createSlice({
   },
 });
 
+export const allProductListAction = allProductList.actions;
 export const productListAction = productList.actions;
 
-export default productList.reducer;
+export const allProductListReducer = allProductList.reducer;
+export const productListReducer = productList.reducer;

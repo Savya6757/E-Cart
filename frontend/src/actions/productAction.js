@@ -1,4 +1,4 @@
-import { productListAction } from "../slices/product-slice";
+import { allProductListAction, productListAction } from "../slices/product-slice";
 import axios from "axios";
 
 export const getProductList = () => {
@@ -7,13 +7,13 @@ export const getProductList = () => {
       const res = await axios.get("/api/products");
       const data = res.data;
       dispatch(
-        productListAction.listSuccess({
+        allProductListAction.listSuccess({
           products: data,
         })
       );
     } catch (error) {
       dispatch(
-        productListAction.listFail({
+        allProductListAction.listFail({
           error:
             error.response && error.response.data.message
               ? error.response.data.message
