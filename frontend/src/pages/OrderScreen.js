@@ -20,10 +20,9 @@ const OrderScreen = () => {
   } = useSelector((state) => state.orderPay);
   useEffect(() => {
     if (!order || success) {
-      dispatch(orderPayReset());
       dispatch(getOrderDetails(orderId));
+      dispatch(orderPayReset());
     }
-    console.log("hi");
   }, [order, orderId, dispatch, success]);
 
   const onPayHandler = () => {

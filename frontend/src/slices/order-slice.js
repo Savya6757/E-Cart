@@ -21,7 +21,7 @@ const orderCreate = createSlice({
 
 const orderDetails = createSlice({
   name: "orderDetails",
-  initialState: { orderItems: [], shippingAddress: {}, loading: true, error: null },
+  initialState: { order: false, orderItems: [], shippingAddress: {}, loading: true, error: null },
   reducers: {
     orderDetailsSuccess(state, action) {
       state.order = action.payload.order;
