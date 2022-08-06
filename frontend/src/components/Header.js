@@ -10,6 +10,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const logoutHandler = () => {
+    
     dispatch(userLogout());
     navigate("/");
   };

@@ -71,6 +71,30 @@ const products = [
     rating: 4,
     numReviews: 12,
   },
+  {
+    name: "L Frost Free Side-By-Side Refrigerator",
+    image: "/images/refrigerator.jpg",
+    description:
+      "Side-by-side refrigerator and Auto Defrost technology that prevents excess ice build up automatically",
+    brand: "LG",
+    category: "Electronics",
+    price: 209.99,
+    countInStock: 7,
+    rating: 0,
+    numReviews: 0,
+  },
+  {
+    name: "HP Victus AMD Ryzen 5 5600H 16.1 inches(40cm) FHD Gaming Laptop",
+    image: "/images/laptop.webp",
+    description:
+      "Processor: 5th Gen AMD Ryzen 5 5600H (3.3GHz base clock speed, up to 4.2 GHz Max Boost Clock, 16MB L3 cache, 6 core, 12 threads)",
+    brand: "HP",
+    category: "Electronics",
+    price: 899.99,
+    countInStock: 4,
+    rating: 0,
+    numReviews: 0,
+  },
 ];
 
 export default products;

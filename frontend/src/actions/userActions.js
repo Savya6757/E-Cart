@@ -38,8 +38,9 @@ export const loginUser = (email, password) => {
 
 export const userLogout = () => {
   return (dispatch) => {
-    localStorage.clear("userInfo");
+    localStorage.clear();
     dispatch(userAuthAction.userLogoutSuccess());
+    dispatch(userAuthAction.userReset());
     dispatch(userDetailsAction.userReset());
     dispatch(orderCreateAction.orderReset());
     dispatch(orderDetailsAction.orderReset());
