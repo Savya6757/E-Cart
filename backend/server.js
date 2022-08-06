@@ -5,12 +5,14 @@ import productRoutes from "./routes/productRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
 import path from "path";
+import compression from "compression";
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 const app = express();
 dotenv.config();
 connectDB();
 
 app.use(express.json());
+app.use(compression());
 
 app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes);

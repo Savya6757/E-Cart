@@ -3,6 +3,7 @@ import {
   allProductListReducer,
   productListReducer,
   productReviewReducer,
+  topProductsReducer,
 } from "./slices/product-slice";
 import cartItems from "./slices/cart-slice";
 import userAuth from "./slices/user-slice";
@@ -34,6 +35,7 @@ const store = configureStore({
     allProductList: allProductListReducer,
     productList: productListReducer,
     productReviewCreate: productReviewReducer,
+    topProducts: topProductsReducer,
     cartItems,
     userAuth,
     userDetails,

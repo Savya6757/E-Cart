@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProductList } from "../actions/productAction";
 import Loader from "../components/ui/Loader";
 import Message from "../components/ui/Message";
+// import TopProductsCarousel from "../components/TopProductsCarousel";
 
 const HomeScreen = () => {
   const { products, loading, error } = useSelector((state) => state.allProductList);
@@ -17,6 +18,7 @@ const HomeScreen = () => {
 
   return (
     <Fragment>
+      {/* <TopProductsCarousel /> */}
       <h1>Latest Products</h1>
       {loading ? (
         <Loader />

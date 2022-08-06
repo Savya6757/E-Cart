@@ -2,6 +2,7 @@ import {
   allProductListAction,
   productListAction,
   productReviewAction,
+  topProductsAction,
 } from "../slices/product-slice";
 import axios from "axios";
 
@@ -82,5 +83,28 @@ export const createProductReview = (prodId, review) => {
 export const createReviewReset = () => {
   return (dispatch) => {
     dispatch(productReviewAction.productCreateReviewReset({}));
+  };
+};
+
+export const listTopProducts = () => {
+  return async (dispatch) => {
+    try {
+      const res = await axios.get("/api/products/top");
+      const data = res.data;
+      dispatch(
+        topProductsAction.topProductsSuccess({
+          products: data,
+        })
+      );
+    } catch (error) {
+      dispatch(
+        topProductsAction.topProductsFail({
+          error:
+            error.response && error.response.data.message
+              ? error.response.data.message
+              : error.message,
+        })
+      );
+    }
   };
 };

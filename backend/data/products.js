@@ -84,7 +84,7 @@ const products = [
     numReviews: 0,
   },
   {
-    name: "HP Victus AMD Ryzen 5 5600H 16.1 inches(40cm) FHD Gaming Laptop",
+    name: "HP Victus AMD Ryzen 5",
     image: "/images/laptop.webp",
     description:
       "Processor: 5th Gen AMD Ryzen 5 5600H (3.3GHz base clock speed, up to 4.2 GHz Max Boost Clock, 16MB L3 cache, 6 core, 12 threads)",

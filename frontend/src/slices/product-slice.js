@@ -48,10 +48,30 @@ const productReview = createSlice({
   },
 });
 
+const topProducts = createSlice({
+  name: "topProducts",
+  initialState: { loading: true, products: [], error: false },
+  reducers: {
+    topProductsSuccess(state, action) {
+      state.loading = false;
+      state.products = action.payload.products;
+    },
+    topProductsFail(state, action) {
+      state.loading = false;
+      state.error = action.payload.error;
+    },
+    topProductsReset() {
+      return { loading: true, products: [], error: false };
+    },
+  },
+});
+
 export const allProductListAction = allProductList.actions;
 export const productListAction = productList.actions;
 export const productReviewAction = productReview.actions;
+export const topProductsAction = topProducts.actions;
 
 export const allProductListReducer = allProductList.reducer;
 export const productListReducer = productList.reducer;
 export const productReviewReducer = productReview.reducer;
+export const topProductsReducer = topProducts.reducer;
