@@ -17,7 +17,7 @@ const allProductList = createSlice({
 
 const productList = createSlice({
   name: "productList",
-  initialState: { product: null, loading: true, error: false },
+  initialState: { product: {}, loading: true, error: false },
   reducers: {
     productSuccess(state, action) {
       state.product = action.payload.product;
@@ -26,6 +26,9 @@ const productList = createSlice({
     productFail(state, action) {
       state.loading = false;
       state.error = action.payload.error;
+    },
+    productReset(state, action) {
+      return { product: {}, loading: true, error: false };
     },
   },
 });

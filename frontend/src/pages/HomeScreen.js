@@ -2,7 +2,7 @@ import React, { Fragment, useEffect } from "react";
 import ProductItems from "../components/ProductItems";
 import { Col, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { getProductList } from "../actions/productAction";
+import { getProductList, productReset } from "../actions/productAction";
 import Loader from "../components/ui/Loader";
 import Message from "../components/ui/Message";
 // import TopProductsCarousel from "../components/TopProductsCarousel";
@@ -14,6 +14,7 @@ const HomeScreen = () => {
 
   useEffect(() => {
     dispatch(getProductList());
+    dispatch(productReset());
   }, [dispatch]);
 
   return (

@@ -80,6 +80,12 @@ export const createProductReview = (prodId, review) => {
   };
 };
 
+export const productReset = () => {
+  return (dispatch) => {
+    dispatch(productListAction.productReset());
+  };
+};
+
 export const createReviewReset = () => {
   return (dispatch) => {
     dispatch(productReviewAction.productCreateReviewReset({}));
