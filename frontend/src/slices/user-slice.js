@@ -34,9 +34,9 @@ const userAuth = createSlice({
       state.loading = false;
       state.error = action.payload.error;
     },
-    userReset() {
-      return { loading: true, userInfo: null, error: null, success: false };
-    },
+    // userReset() {
+    //   return { loading: true, userInfo: null, error: null, success: false };
+    // },
   },
 });
 

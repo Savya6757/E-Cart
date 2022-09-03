@@ -40,6 +40,9 @@ const cartItems = createSlice({
         Number(state.taxPrice)
       ).toFixed(2);
     },
+    cartReset(state, action) {
+      return { items: [], shippingAddress: {}, paymentMethod: {} };
+    },
   },
 });
 

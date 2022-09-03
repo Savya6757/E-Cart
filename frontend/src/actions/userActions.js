@@ -7,6 +7,7 @@ import {
   orderListAction,
   orderPayAction,
 } from "../slices/order-slice";
+import { cartItemsAction } from "../slices/cart-slice";
 
 export const loginUser = (email, password) => {
   return async (dispatch) => {
@@ -38,14 +39,15 @@ export const loginUser = (email, password) => {
 
 export const userLogout = () => {
   return (dispatch) => {
-    localStorage.clear();
     dispatch(userAuthAction.userLogoutSuccess());
-    dispatch(userAuthAction.userReset());
+    // dispatch(userAuthAction.userReset());
     dispatch(userDetailsAction.userReset());
     dispatch(orderCreateAction.orderReset());
     dispatch(orderDetailsAction.orderReset());
     dispatch(orderPayAction.orderReset());
     dispatch(orderListAction.orderReset());
+    dispatch(cartItemsAction.cartReset());
+    localStorage.clear();
   };
 };
 
