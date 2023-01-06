@@ -2,7 +2,7 @@
   "name": "emart",
   "version": "1.0.0",
   "description": "",
-  "main": ".backend/server.js",
+  "main": "./backend/server.js",
   "type": "module",
   "scripts": {
     "server": "nodemon backend/server",
@@ -11,7 +11,7 @@
     "data:import": "node backend/seeder",
     "data:destroy": "node backend/seeder - d",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend",
-    "start": "cd ./server && node index.js"
+    "start": "cd ./backend && node server.js"
   },
   "keywords": [],
   "author": "Savyasanchi Shukla",
